@@ -155,6 +155,7 @@ DispalyBall:
     
     LEA R0 ballLine
     LD R1, x
+    ADD R1, R1, R1;multiply R1 by 2 for output
     ADD R2, R0, R1
     LD R1, BALL
     STR R1, R2, #0
@@ -174,7 +175,8 @@ DispalyBall:
     RET
 
 
-ballLine    .STRINGZ    "|            |\n";
+;ballLine    .STRINGZ    "|            |\n";
+ballLine    .STRINGZ    "|                         |\n";
 BALL    .FILL   #111    ;'o'
 SPACE    .FILL   #32    ;' '
 
@@ -191,7 +193,8 @@ DisplayLine:
     ADD R6, R6, #1
     LDR R0, R6, #0
     RET   
-LINE    .STRINGZ "______________\n"
+;LINE    .STRINGZ "______________\n"
+LINE    .STRINGZ "_ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
 
 
 ;********************* displayRaw**********************
@@ -210,8 +213,8 @@ DisplayRaw:
     LDR R0, R6, #0
     RET
     
-ROW .STRINGZ    "|            |\n";    
-
+;ROW .STRINGZ    "|            |\n";    
+ROW .STRINGZ    "|                         |\n"; 
 
 
 ;*****************wait************
@@ -230,7 +233,7 @@ DONE    LD R1, SAVER1_W
     
     
 SAVER1_w    .BLKW #1
-TIME        .FILL #10000
+TIME        .FILL #5000
 
 
 
