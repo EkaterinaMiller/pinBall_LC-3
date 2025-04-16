@@ -37,20 +37,22 @@ Draw:
         NOT R5, R5
         ADD R5, R5, #1 ;R5 = -y
         ADD R3, R5, #8 ;number of rows before the ball
-LOOP2       JSR DisplayRaw
+LOOP2       BRz DI_BALL
+            JSR DisplayRaw
             ADD R3, R3, #-1
-            BRp LOOP2
+            BR LOOP2
 ;       ;dispaly the raw with the ball     
-        JSR DispalyBall
+DI_BALL  JSR DispalyBall
         
 ;  ;display row after the balll 
         LD R5, Y
         ADD R3, R5, #-1 ;number of rows after the ball
-LOOP3       JSR DisplayRaw
+LOOP3       BRz DI_END
+            JSR DisplayRaw
             ADD R3, R3, #-1
             BRp LOOP3  
     
-    JSR DisplayLine
+DI_END  JSR DisplayLine
             
     ADD R6, R6, #1
     LDR R3, R6, #0
@@ -61,7 +63,7 @@ LOOP3       JSR DisplayRaw
     RET
 
 x       .FILL #2
-y       .FILL #5 
+y       .FILL #7 
 
 ;***************Move*******************************
 ;
@@ -133,9 +135,9 @@ STOREy      ST R1, y
     LDR R1, R6, #0
     RET
  
-WIDTH   .FILL xFFF3 ; 14-1=13 =>-13
-HIGHT  .FILL  xFFF8   ;-8
-moveX   .FILL #-1
+WIDTH   .FILL #-13 ; 14-1=13 =>-13
+HIGHT  .FILL  #-9   ;
+moveX   .FILL #1
 moveY   .FILL #1  
 ;***************DispalyBall************************
 ;
